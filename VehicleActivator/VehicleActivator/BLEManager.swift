@@ -11,7 +11,7 @@ import CoreBluetooth
 struct Peripheral: Identifiable {
     let id: Int
     let name: String
-    let uuid: UUID
+    //let uuid: UUID
     let rssi: Int
 }
 
@@ -60,7 +60,8 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
             uuidString = "Unknown"
         }
         
-        let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, uuid: UUID(uuidString: uuidString)!, rssi: RSSI.intValue)
+        //let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, uuid: UUID(uuidString: uuidString)!, rssi: RSSI.intValue)
+        let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue)
         print(newPeripheral)
         peripherals.append(newPeripheral)
     }

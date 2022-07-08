@@ -53,12 +53,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
             peripheralName = "Unknown"
         }
         
-        if let uuidsKey = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? String {
-            uuidString = uuidsKey
-        }
-        else {
-            uuidString = "Unknown"
-        }
+        //if let uuidsKey = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? String {
+        //    uuidString = uuidsKey
+        //}
+        //else {
+        //    uuidString = "Unknown"
+        //}
         
         //let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, uuid: UUID(uuidString: uuidString)!, rssi: RSSI.intValue)
         let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue)

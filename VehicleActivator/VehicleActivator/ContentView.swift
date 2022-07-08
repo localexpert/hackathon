@@ -20,6 +20,10 @@ struct ContentView: View {
             List(bleManager.peripherals) { peripheral in
                 HStack {
                     Text(peripheral.name)
+                    Button("Connect") {
+                        //connect
+                        //bleManager.connectWithPeripheral(peripheral: peripheral)
+                    }
                     Spacer()
                     Text(String(peripheral.rssi))
                 }
@@ -27,7 +31,7 @@ struct ContentView: View {
  
             Spacer()
  
-            Text("STATUS")
+            Text("Bluetooth STATUS")
                 .font(.headline)
  
             // Status goes here
@@ -53,21 +57,6 @@ struct ContentView: View {
                         self.bleManager.stopScanning()
                     }) {
                         Text("Stop Scanning")
-                    }
-                }.padding()
- 
-                Spacer()
- 
-                VStack (spacing: 10) {
-                    Button(action: {
-                        print("Start Advertising")
-                    }) {
-                        Text("Start Advertising")
-                    }
-                    Button(action: {
-                        print("Stop Advertising")
-                    }) {
-                        Text("Stop Advertising")
                     }
                 }.padding()
             }

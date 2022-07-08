@@ -46,6 +46,7 @@
 		8D5360F3287706B70027C276 /* VehicleActivatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleActivatorUITests.swift; sourceTree = "<group>"; };
 		8D5360F5287706B70027C276 /* VehicleActivatorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleActivatorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8D536102287707B90027C276 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
+		8DBFB27B2877CDE5002D1745 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +97,7 @@
 		8D5360D7287706B60027C276 /* VehicleActivator */ = {
 			isa = PBXGroup;
 			children = (
+				8DBFB27B2877CDE5002D1745 /* Info.plist */,
 				8D5360D8287706B60027C276 /* VehicleActivatorApp.swift */,
 				8D5360DA287706B60027C276 /* ContentView.swift */,
 				8D5360DC287706B70027C276 /* Assets.xcassets */,
@@ -423,6 +425,9 @@
 				DEVELOPMENT_ASSET_PATHS = "\"VehicleActivator/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VehicleActivator/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app uses bluetooth";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "This app uses bluetooth";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -451,6 +456,9 @@
 				DEVELOPMENT_ASSET_PATHS = "\"VehicleActivator/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VehicleActivator/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app uses bluetooth";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "This app uses bluetooth";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

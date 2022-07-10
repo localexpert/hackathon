@@ -22,7 +22,7 @@ struct ContentView: View {
                     Text(peripheral.name)
                     Button("Connect") {
                         //connect
-                        //bleManager.connectWithPeripheral(peripheral: peripheral)
+                        bleManager.connectWithPeripheral(peripheral: peripheral.cbPeripheral)
                     }
                     Spacer()
                     Text(String(peripheral.rssi))

@@ -161,13 +161,16 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                   peripheral.setNotifyValue(true, for: characteristic)
                   peripheral.readValue(for: characteristic)
 
-                  print("RX Characteristic: \(characteristic.uuid)")
+            print("RX Characteristic: \(characteristic.uuid) - \(characteristic.value)")
             if (characteristic.uuid.uuidString == "2A57") {
                 let valueString = ("1" as NSString).data(using: String.Encoding.utf8.rawValue)
                 print("Write 1 to \(characteristic.uuid)")
                 peripheral.writeValue(valueString!, for: characteristic, type: CBCharacteristicWriteType.withResponse)
                 print("Done")
             }
+            peripheral.readValue(for: characteristic)
+
+            print("RX Characteristic: \(characteristic.value)")
                 //}
 
                 //if characteristic.uuid.isEqual(CBUUIDs.BLE_Characteristic_uuid_Tx){

@@ -68,9 +68,16 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
        
         if let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             peripheralName = name
+            
+            //let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, uuid: UUID(uuidString: uuidString)!, rssi: RSSI.intValue)
+            let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbPeripheral: peripheral)
+            print(newPeripheral)
+            peripherals.append(newPeripheral)
+            
         }
         else {
             peripheralName = "Unknown"
+            //Ignore the device
         }
         
         //if let uuidsKey = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? String {
@@ -80,10 +87,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         //    uuidString = "Unknown"
         //}
         
-        //let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, uuid: UUID(uuidString: uuidString)!, rssi: RSSI.intValue)
-        let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbPeripheral: peripheral)
-        print(newPeripheral)
-        peripherals.append(newPeripheral)
+
     }
     
     /**
@@ -91,6 +95,8 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
      */
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         //peripheral.delegate = self
+        print("connected with " + peripheral.name!)
+        print("Discovering Services......")
         peripheral.discoverServices(nil)
     }
     
@@ -109,6 +115,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         guard let services = peripheral.services else {
             return
         }
+        print("Service found:")
+        print(services)
+        print("Discover Characteristics.......")
         discoverCharacteristics(peripheral: peripheral)
     }
      
@@ -118,5 +127,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         }
         // Consider storing important characteristics internally for easy access and equivalency checks later.
         // From here, can read/write to characteristics or subscribe to notifications as desired.
+        print("Characteristics found:")
+        print(characteristics)
     }
 }

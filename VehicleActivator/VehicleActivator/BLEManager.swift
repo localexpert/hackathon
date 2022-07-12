@@ -41,6 +41,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
 
     func startScanning() {
          print("startScanning")
+        peripherals.removeAll()
         //withService nil we are performing broad-based scan
         //WITHSERVICE SERVICEUUIDS: [CBUUID] allows scan specific peripheral
         //For every peripheral found, the CBCentralManagerDelegate callback method didDiscover peripheral get called
@@ -49,6 +50,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     
     func stopScanning() {
         print("stopScanning")
+        peripherals.removeAll()
         myCentral.stopScan()
     }
     

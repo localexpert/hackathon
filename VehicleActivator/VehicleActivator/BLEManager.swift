@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreBluetooth
+//let vehicleServiceCBUUID = CBUUID(string: "0x2A57")
 
 struct Peripheral: Identifiable {
     let id: Int
@@ -31,12 +32,31 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
 
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-         if central.state == .poweredOn {
+         /*if central.state == .poweredOn {
              isSwitchedOn = true
          }
          else {
              isSwitchedOn = false
-         }
+         }*/
+        switch central.state{
+            
+        case .unknown:
+            print("central.state is .unknown")
+        case .resetting:
+            print("central.state is .resetting")
+        case .unsupported:
+            print("central.state is .unsupported")
+        case .unauthorized:
+            print("central.state is .unauthorized")
+        case .poweredOff:
+            print("central.state is .powerOff")
+            isSwitchedOn = false
+        case .poweredOn:
+            print("central.state is .poweredOn")
+            isSwitchedOn = true
+        @unknown default:
+            print("central.state is called by DEFAULT")
+        }
     }
 
     func startScanning() {
@@ -45,11 +65,13 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         //withService nil we are performing broad-based scan
         //WITHSERVICE SERVICEUUIDS: [CBUUID] allows scan specific peripheral
         //For every peripheral found, the CBCentralManagerDelegate callback method didDiscover peripheral get called
-         myCentral.scanForPeripherals(withServices: nil, options: nil)
+        myCentral.scanForPeripherals(withServices: nil, options: nil)
+        //myCentral.scanForPeripherals(withServices: [vehicleServiceCBUUID])
      }
     
     func stopScanning() {
         print("stopScanning")
+        //self.myCentral.cancelPeripheralConnection(peripheral)
         myCentral.stopScan()
     }
     
@@ -163,7 +185,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     
     // Callback method for disconnect
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        if let error = error {
+        if (error != nil) {
             print("Error when disconnecting")// Handle error
             return
         }

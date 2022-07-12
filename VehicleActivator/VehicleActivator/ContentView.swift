@@ -23,12 +23,12 @@ struct ContentView: View {
                     Button("Connect") {
                         //connect
                         bleManager.connectWithPeripheral(peripheral: peripheral.cbPeripheral)
-                    }
-                    //Spacer()
-                    //Button("Disconnect") {
+                    }.buttonStyle(PlainButtonStyle())
+                    Spacer()
+                    Button("Disconnect") {
                         //connect
-                    //    bleManager.disconnectPeripheral(peripheral: peripheral.cbPeripheral)
-                    //}
+                        bleManager.disconnectPeripheral(peripheral: peripheral.cbPeripheral)
+                    }.buttonStyle(PlainButtonStyle())
                     Spacer()
                     Text(String(peripheral.rssi))
                 }

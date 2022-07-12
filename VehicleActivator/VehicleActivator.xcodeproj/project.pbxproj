@@ -15,6 +15,7 @@
 		8D5360F4287706B70027C276 /* VehicleActivatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5360F3287706B70027C276 /* VehicleActivatorUITests.swift */; };
 		8D5360F6287706B70027C276 /* VehicleActivatorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5360F5287706B70027C276 /* VehicleActivatorUITestsLaunchTests.swift */; };
 		8D536103287707B90027C276 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D536102287707B90027C276 /* BLEManager.swift */; };
+		F41CA2C8287DDCE100B741D9 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F41CA2C7287DDCE100B741D9 /* ExternalAccessory.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		8D5360F5287706B70027C276 /* VehicleActivatorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleActivatorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8D536102287707B90027C276 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
 		8DBFB27B2877CDE5002D1745 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F41CA2C5287DDCE000B741D9 /* VehicleActivator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VehicleActivator.entitlements; sourceTree = "<group>"; };
+		F41CA2C7287DDCE100B741D9 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F41CA2C8287DDCE100B741D9 /* ExternalAccessory.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +85,7 @@
 				8D5360E8287706B70027C276 /* VehicleActivatorTests */,
 				8D5360F2287706B70027C276 /* VehicleActivatorUITests */,
 				8D5360D6287706B60027C276 /* Products */,
+				F41CA2C6287DDCE100B741D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +102,7 @@
 		8D5360D7287706B60027C276 /* VehicleActivator */ = {
 			isa = PBXGroup;
 			children = (
+				F41CA2C5287DDCE000B741D9 /* VehicleActivator.entitlements */,
 				8DBFB27B2877CDE5002D1745 /* Info.plist */,
 				8D5360D8287706B60027C276 /* VehicleActivatorApp.swift */,
 				8D5360DA287706B60027C276 /* ContentView.swift */,
@@ -130,6 +136,14 @@
 				8D5360F5287706B70027C276 /* VehicleActivatorUITestsLaunchTests.swift */,
 			);
 			path = VehicleActivatorUITests;
+			sourceTree = "<group>";
+		};
+		F41CA2C6287DDCE100B741D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F41CA2C7287DDCE100B741D9 /* ExternalAccessory.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,10 +433,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VehicleActivator/VehicleActivator.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"VehicleActivator/Preview Content\"";
-				DEVELOPMENT_TEAM = M8GFQUVT53;
+				DEVELOPMENT_TEAM = 79Y75K8XW3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VehicleActivator/Info.plist;
@@ -452,10 +467,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VehicleActivator/VehicleActivator.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"VehicleActivator/Preview Content\"";
-				DEVELOPMENT_TEAM = M8GFQUVT53;
+				DEVELOPMENT_TEAM = 79Y75K8XW3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VehicleActivator/Info.plist;

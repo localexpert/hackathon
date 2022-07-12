@@ -69,10 +69,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         if let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             peripheralName = name
             
-            //let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, uuid: UUID(uuidString: uuidString)!, rssi: RSSI.intValue)
-            let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbPeripheral: peripheral)
-            print(newPeripheral)
-            peripherals.append(newPeripheral)
+            if(isPeripheralExists(name: peripheralName)) {
+                //let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, uuid: UUID(uuidString: uuidString)!, rssi: RSSI.intValue)
+                let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbPeripheral: peripheral)
+                print(newPeripheral)
+                peripherals.append(newPeripheral)
+            }
             
         }
         else {
@@ -129,5 +131,10 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         // From here, can read/write to characteristics or subscribe to notifications as desired.
         print("Characteristics found:")
         print(characteristics)
+    }
+    
+    func isPeripheralExists(name: String) -> Bool {
+        return peripherals.contains(where: { $0.name == name })
+        
     }
 }

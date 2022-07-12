@@ -162,10 +162,10 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                   peripheral.readValue(for: characteristic)
 
                   print("RX Characteristic: \(characteristic.uuid)")
-            if (characteristic.uuid.uuidString == "0x2A57") {
+            if (characteristic.uuid.uuidString == "2A57") {
                 let valueString = ("1" as NSString).data(using: String.Encoding.utf8.rawValue)
                 print("Write 1 to \(characteristic.uuid)")
-                peripheral.writeValue(valueString!, for: characteristic, type: .withoutResponse)
+                peripheral.writeValue(valueString!, for: characteristic, type: CBCharacteristicWriteType.withResponse)
                 print("Done")
             }
                 //}

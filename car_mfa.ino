@@ -12,17 +12,8 @@
   (c) 2020 K. Söderby for Arduino
 */
 
-#include <SPI.h>
-#include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
-#include <ArduinoBLE.h>
 
-#define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 32 // OLED display height, in pixels
-#define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
-#define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+#include <ArduinoBLE.h>
 
 
 
@@ -36,28 +27,6 @@ long previousMillis = 0;
 
 
 void setup() {
-
-  // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
-  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
-    Serial.println(F("SSD1306 allocation failed"));
-    for(;;); // Don't proceed, loop forever
-  }
-
-   // Show initial display buffer contents on the screen --
-  // the library initializes this with an Adafruit splash screen.
-  display.display();
-  delay(2000); // Pause for 2 seconds
-
-  // Clear the buffer
-  display.clearDisplay();
-
-  display.drawPixel(10, 10, SSD1306_WHITE);
-
-  // Show the display buffer on the screen. You MUST call display() after
-  // drawing commands to make them visible on screen!
-  display.display();
-  delay(2000);
-
   
   Serial.begin(9600);    // initialize serial communication
   // while (!Serial);       //starts the program if we open the serial monitor.
@@ -70,6 +39,12 @@ void setup() {
     Serial.println("starting BLE failed!");
     while (1);
   }
+
+  String address = BLE.address();
+
+  Serial.print("Local address is: ");
+  Serial.println(address);
+
 
   BLE.setLocalName("MKR WiFi 1010A"); //Setting a name that will appear when scanning for bluetooth devices
   BLE.setAdvertisedService(newService);
@@ -84,7 +59,7 @@ void setup() {
 
   BLE.advertise(); //start advertising the service
   Serial.println("Bluetooth device active, waiting for connections...");
-  showtext("Bluetooth device active, waiting for connections...");
+  
 }
 
 void loop() {
@@ -95,7 +70,7 @@ void loop() {
     Serial.print("Connected to central: ");
     
     Serial.println(central.address()); // print the central's BT address
-    showtext("Connect to central: " + central.address() + " RSSI: " + central.rssi());
+  
      
     digitalWrite(LED_BUILTIN, HIGH); // turn on the LED to indicate the connection
 
@@ -115,10 +90,10 @@ void loop() {
             Serial.println("LED on");
             digitalWrite(ledPin, HIGH);         // will turn the LED on
             digitalWrite(1,HIGH);
-            showtext("Car Activated !!");
+   
           } else {                              // a 0 value
             Serial.println(F("LED off"));
-            showtext("Car Disabled");
+  
             digitalWrite(ledPin, LOW);          // will turn the LED off
             digitalWrite(1,LOW);
           }
@@ -132,19 +107,8 @@ void loop() {
     Serial.print("Disconnected from central: ");
     
     Serial.println(central.address());
-    showtext("Disconnected from central: " + central.address()); 
+   
   }
 }
 
-void showtext(String text){
-  display.clearDisplay();
 
-  display.setTextSize(1); // Draw 2X-scale text
-  display.setTextColor(SSD1306_WHITE);
-  display.setCursor(10, 0);
-  display.println(text);
-  
-  display.display();      // Show initial text
-  delay(1000); 
-  
-}

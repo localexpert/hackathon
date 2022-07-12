@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreBluetooth
-let vehicleServiceCBUUID = CBUUID(string: "0x2A57")
+//let vehicleServiceCBUUID = CBUUID(string: "0x2A57")
 
 struct Peripheral: Identifiable {
     let id: Int
@@ -65,12 +65,13 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         //withService nil we are performing broad-based scan
         //WITHSERVICE SERVICEUUIDS: [CBUUID] allows scan specific peripheral
         //For every peripheral found, the CBCentralManagerDelegate callback method didDiscover peripheral get called
-        //myCentral.scanForPeripherals(withServices: nil, options: nil)
-        myCentral.scanForPeripherals(withServices: [vehicleServiceCBUUID])
+        myCentral.scanForPeripherals(withServices: nil, options: nil)
+        //myCentral.scanForPeripherals(withServices: [vehicleServiceCBUUID])
      }
     
     func stopScanning() {
         print("stopScanning")
+        //self.myCentral.cancelPeripheralConnection(peripheral)
         myCentral.stopScan()
     }
     

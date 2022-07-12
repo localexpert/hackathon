@@ -50,7 +50,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     
     func stopScanning() {
         print("stopScanning")
-        peripherals.removeAll()
         myCentral.stopScan()
     }
     
@@ -69,7 +68,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         if let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             peripheralName = name
             
-            if(isPeripheralExists(name: peripheralName)) {
+            if(isPeripheralExists(name: peripheralName) == false) {
                 //let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, uuid: UUID(uuidString: uuidString)!, rssi: RSSI.intValue)
                 let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbPeripheral: peripheral)
                 print(newPeripheral)

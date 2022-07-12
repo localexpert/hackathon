@@ -148,10 +148,28 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         guard let characteristics = service.characteristics else {
             return
         }
+        print("Found \(characteristics.count) characteristics.")
         // Consider storing important characteristics internally for easy access and equivalency checks later.
         // From here, can read/write to characteristics or subscribe to notifications as desired.
-        print("Characteristics found:")
-        print(characteristics)
+        for characteristic in characteristics {
+
+                //if characteristic.uuid.isEqual(CBUUIDs.BLE_Characteristic_uuid_Rx)  {
+
+                  //rxCharacteristic = characteristic
+
+                  peripheral.setNotifyValue(true, for: characteristic)
+                  peripheral.readValue(for: characteristic)
+
+                  print("RX Characteristic: \(characteristic.uuid)")
+                //}
+
+                //if characteristic.uuid.isEqual(CBUUIDs.BLE_Characteristic_uuid_Tx){
+                  
+                  //txCharacteristic = characteristic
+                  
+                  //print("TX Characteristic: \(txCharacteristic.uuid)")
+                //}
+              }
     }
     
     func disconnectPeripheral(peripheral: CBPeripheral) {

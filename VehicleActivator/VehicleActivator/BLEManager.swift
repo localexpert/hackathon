@@ -168,9 +168,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                 peripheral.writeValue(valueString!, for: characteristic, type: CBCharacteristicWriteType.withResponse)
                 print("Done")
             }
-            peripheral.readValue(for: characteristic)
+            //peripheral.readValue(for: characteristic)
 
-            print("RX Characteristic: \(characteristic.value)")
+            //print("RX Characteristic: \(characteristic.value)")
                 //}
 
                 //if characteristic.uuid.isEqual(CBUUIDs.BLE_Characteristic_uuid_Tx){

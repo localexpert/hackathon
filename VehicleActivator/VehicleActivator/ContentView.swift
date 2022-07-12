@@ -24,6 +24,10 @@ struct ContentView: View {
                         //connect
                         bleManager.connectWithPeripheral(peripheral: peripheral.cbPeripheral)
                     }
+                    Button("Disconnect") {
+                        //connect
+                        bleManager.disconnectPeripheral(peripheral: peripheral.cbPeripheral)
+                    }
                     Spacer()
                     Text(String(peripheral.rssi))
                 }

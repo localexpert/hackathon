@@ -16,7 +16,7 @@ struct Peripheral: Identifiable {
     let cbPeripheral: CBPeripheral
 }
 
-class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
+class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     var myCentral: CBCentralManager!
     @Published var isSwitchedOn = false
@@ -95,7 +95,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
      * Once connection is established, the centralManager didConnect delegate method gets called
      */
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        //peripheral.delegate = self
+        peripheral.delegate = self
         print("connected with " + peripheral.name!)
         print("Discovering Services......")
         peripheral.discoverServices(nil)
@@ -114,6 +114,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     // In CBPeripheralDelegate class/extension
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else {
+            print("No Services found!")
             return
         }
         print("Service found:")
@@ -130,6 +131,20 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         // From here, can read/write to characteristics or subscribe to notifications as desired.
         print("Characteristics found:")
         print(characteristics)
+    }
+    
+    func disconnectPeripheral(peripheral: CBPeripheral) {
+        self.myCentral.cancelPeripheralConnection(peripheral)
+    }
+    
+    // Callback method for disconnect
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        if let error = error {
+            print("Error when disconnecting")// Handle error
+            return
+        }
+        // Successfully disconnected
+        print("Successfully disconnected")
     }
     
     func isPeripheralExists(name: String) -> Bool {

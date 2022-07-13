@@ -20,11 +20,11 @@ struct ContentView: View {
             List(bleManager.peripherals) { peripheral in
                 HStack {
                     Text(peripheral.name)
-                    Button("Connect") {
+                    //Button("Connect") {
                         //connect
-                        bleManager.connectWithPeripheral(peripheral: peripheral.cbPeripheral)
-                    }.buttonStyle(PlainButtonStyle()).foregroundColor(.white)
-                        .background(Color.green)
+                    //    bleManager.connectWithPeripheral(peripheral: peripheral.cbPeripheral)
+                    //}.buttonStyle(PlainButtonStyle()).foregroundColor(.white)
+                    //    .background(Color.green)
                     Spacer()
                     Button("Disconnect") {
                         //connect

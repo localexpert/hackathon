@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+//var selectedPeripheral
+
 struct ContentView: View {
     
     @ObservedObject var bleManager = BLEManager()
@@ -20,6 +22,7 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .frame(maxWidth: .infinity, alignment: .center)
             List(bleManager.peripherals) { peripheral in
+                //selectedPeripheral = peripheral
                 HStack {
                     Text(peripheral.name)
                     //Button("Connect") {

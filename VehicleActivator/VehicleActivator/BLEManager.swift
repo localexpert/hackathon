@@ -72,7 +72,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     
     func stopScanning() {
         print("stopScanning")
-        //self.myCentral.cancelPeripheralConnection(peripheral)
+        self.myCentral.cancelPeripheralConnection(peripherals[0].cbPeripheral)
         myCentral.stopScan()
     }
     

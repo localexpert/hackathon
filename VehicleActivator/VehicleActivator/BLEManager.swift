@@ -72,8 +72,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     
     func stopScanning() {
         print("stopScanning")
-        self.myCentral.cancelPeripheralConnection(peripherals[0].cbPeripheral)
-        myCentral.stopScan()
+        //self.myCentral.cancelPeripheralConnection(peripherals[0].cbPeripheral)
+        //myCentral.stopScan()
+        peripherals.removeAll()
     }
     
     func connectWithPeripheral(peripheral: CBPeripheral) {
@@ -93,7 +94,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             //print(peripheralName!)
             //print (RSSI)
             if let name = peripheralName {
-                if (name == "MKR WiFi 1010A"  && RSSI.intValue > -70 && isPeripheralExists(name: peripheralName) == false) {
+                if (name == "MKR WiFi 1010A"  && RSSI.intValue > -65 && isPeripheralExists(name: peripheralName) == false) {
                     //print ("condition passed")
                     print (RSSI)
                     //let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, uuid: UUID(uuidString: uuidString)!, rssi: RSSI.intValue)
@@ -109,6 +110,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             
         }
         else {
+            //peripherals.removeAll()
             peripheralName = "Unknown"
             //Ignore the device
         }

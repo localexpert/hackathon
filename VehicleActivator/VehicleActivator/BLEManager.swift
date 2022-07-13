@@ -54,6 +54,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         case .poweredOn:
             print("central.state is .poweredOn")
             isSwitchedOn = true
+            startScanning()
         @unknown default:
             print("central.state is called by DEFAULT")
         }
@@ -89,17 +90,21 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
        
         if let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             peripheralName = name
-            
-            if(peripheralName == "MRK WiFi 1010A"  && RSSI.intValue > -70
-               && isPeripheralExists(name: peripheralName) == false
-            ) {
-                //let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, uuid: UUID(uuidString: uuidString)!, rssi: RSSI.intValue)
-                let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbPeripheral: peripheral)
-                print(newPeripheral)
-                peripherals.append(newPeripheral)
-                
-                //Connect right away
-                connectWithPeripheral(peripheral: peripheral)
+            //print(peripheralName!)
+            //print (RSSI)
+            if let name = peripheralName {
+                if (name == "MKR WiFi 1010A"  && RSSI.intValue > -70 && isPeripheralExists(name: peripheralName) == false) {
+                    //print ("condition passed")
+                    print (RSSI)
+                    //let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, uuid: UUID(uuidString: uuidString)!, rssi: RSSI.intValue)
+                    let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbPeripheral: peripheral)
+                    peripherals.append(newPeripheral)
+                    
+                    print("print before connect")
+                    //Connect right away
+                    connectWithPeripheral(peripheral: peripheral)
+                    print ("print after connect")
+                }
             }
             
         }

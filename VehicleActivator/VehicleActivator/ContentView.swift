@@ -10,10 +10,12 @@ import SwiftUI
 struct ContentView: View {
     
     @ObservedObject var bleManager = BLEManager()
- 
+    
+    
+    
     var body: some View {
         VStack (spacing: 10) {
- 
+            
             Text("Bluetooth Devices")
                 .font(.largeTitle)
                 .frame(maxWidth: .infinity, alignment: .center)
